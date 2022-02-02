@@ -1,0 +1,117 @@
+\documentclass{beamer}
+
+\usetheme{polimi}
+% Usage instructions can be found at: https://github.com/elauksap/beamerthemepolimi
+
+\usepackage[utf8]{inputenc}
+
+\title{Mathematical Methods for the FSI Problem}
+\subtitle{PhD Course}
+\author{Claudio Caccia}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+    \maketitle
+\end{frame}
+
+\section{Articles}
+
+\begin{frame}{Selected Articles:}
+    
+    \begin{itemize}
+        \item Leroyer, Alban, et al. \textbf{Efficient FSI codes coupling with possible large added mass effects: applications to rigid and elongated flexible bodies in the maritime field.} COUPLED VI: proceedings of the VI International Conference on Computational Methods for Coupled Problems in Science and Engineering. CIMNE, 2015.
+        \item Hagmeyer, Nora, et al. \textbf{Fluid-beam interaction: Capturing the effect of embedded slender bodies on global fluid flow and vice versa.} arXiv preprint arXiv:2104.09844 (2021).
+    \end{itemize}
+    
+\end{frame}
+
+\section{Efficient FSI codes coupling with large AME}
+
+
+
+\begin{frame}{Efficient FSI}
+\huge
+\centering
+Efficient FSI codes coupling with possible large added mass effects: \\
+applications to rigid and elongated flexible bodies in the maritime field
+    
+\end{frame}
+
+\subsection{Introduction}
+
+\begin{frame}{Motivation}
+
+\begin{itemize}
+    \item FSI in \textit{naval architecture}
+    \item Advantages of \textbf{partitioned approach}
+    \begin{itemize}
+        \item \textbf{ISIS-CFD} for the fluid domain (LHEEA Laboratory Nantes)
+        \item \textbf{MBDyn} for the structural domain (Politecnico di Milano)
+    \end{itemize}
+    \item issues in obtaining a \textit{robust} and \textit{efficient} algorithm due to \textbf{Added Mass Effect} (AME)
+    \item Application to \textit{rigid} and \textit{flexible} bodies
+\end{itemize}
+    
+\end{frame}
+
+
+\subsection{solvers}
+
+\begin{frame}{ISIS-CFD}
+    \begin{itemize}
+        \item solution of \textit{incompressible} \textbf{RANS}
+        \item \textbf{FVM}, with SIMPLE pressure-velocity coupling:
+        \begin{itemize}
+            \item \textit{velocity} given by momentum equation
+            \item \textit{pressure} given by mass conservation (transf. into \textbf{p} equation)
+        \end{itemize}
+        \item \textbf{ALE} formulation to deal with domain modification (mesh deformation technique not specified, defined \textit{robust})
+        \item \textit{temporal discretization} \textbf{BDF2}
+        \item internal nonlinearities dealt with \textit{Picard linearisation}
+        \item \textbf{VOF} capabilites, surface capturing to describe free surface flows
+        
+     
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{MBDyn}
+    \begin{itemize}
+        \item Solution of complex multibody systems: e.g. nonlinear dynamics, aeroservoelasticity, piezo-electric, hydraulic components, etc...
+        \item \textit{Redundant Coordinate Set} (RCS) formulation: \textit{nodes} with 6 dofs
+        \item \textit{holonomic} and \textit{nonholonomic} constraints add equations equivalent to \textbf{Lagrange multipliers} which represent reaction force and couples
+        \item The complete system is described by a set of first order \textit{Differential Algebraic Equations} (DAE)
+        \item a tunable \textit{A-Stable} multistep integration scheme is used to damp numeric oscillations. (\textbf{BDF2} is used)
+        \item \textit{interface handling?}
+    \end{itemize}
+\end{frame}
+
+\subsection{coupling}
+
+\begin{frame}{Coupling description}
+on $\Gamma$:
+    \begin{itemize}
+        \item $\delta_f = \delta_s$  kinematic condition
+        \item $\sigma_f + \sigma_f = 0$ dynamic condition
+    \end{itemize}
+
+
+\textbf{Steklov-Poincaré} operator $\mathcal{S}$ maps the values of one BC of the solution of a PDE in a domain to the values of another BC. Here: $\mathcal{S}_d(\delta_d) = \sigma_d \quad \mathcal{S}_d^{-1}(\sigma_d) = \delta_d$
+\end{frame}
+
+\subsection{applications}
+
+
+
+
+
+\section[Fluid-beam interaction]{Fluid-beam interaction: capturing the effect of embedded slender bodies}
+
+\subsection{Introduction}
+
+\begin{frame}{Motivation}
+    
+\end{frame}
+
+\end{document}
